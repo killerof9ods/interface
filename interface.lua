@@ -1283,7 +1283,7 @@ local function createBox(option, parent)
 
 	inputvalue.InputBegan:connect(function(input)
 		if input.UserInputType.Name == "MouseButton1" then
-			inputvalue.Text = ""
+			inputvalue.Text = "nigger"
 		end
 		if input.UserInputType.Name == "MouseMovement" then
 			if not library.warning and not library.slider then
