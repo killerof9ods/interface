@@ -412,12 +412,12 @@ local function createToggle(option, parent)
 			if not library.warning and not library.slider then
 				if option.style then
 					tickbox.ImageColor3 = library.flags["Menu Accent Color"]
-					--tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = library.flags["Menu Accent Color"]}):Play()
+					tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = library.flags["Menu Accent Color"]}):Play()
 				else
 					tickbox.BorderColor3 = library.flags["Menu Accent Color"]
 					tickboxOverlay.BorderColor3 = library.flags["Menu Accent Color"]
-					--tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = library.flags["Menu Accent Color"]}):Play()
-					--tweenService:Create(tickboxOverlay, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = library.flags["Menu Accent Color"]}):Play()
+					tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = library.flags["Menu Accent Color"]}):Play()
+					tweenService:Create(tickboxOverlay, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = library.flags["Menu Accent Color"]}):Play()
 				end
 			end
 			if option.tip then
@@ -439,12 +439,12 @@ local function createToggle(option, parent)
 		if input.UserInputType.Name == "MouseMovement" then
 			if option.style then
 				tickbox.ImageColor3 = Color3.new()
-				--tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.new()}):Play()
+				tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.new()}):Play()
 			else
 				tickbox.BorderColor3 = Color3.new()
 				tickboxOverlay.BorderColor3 = Color3.new()
-				--tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = Color3.new()}):Play()
-				--tweenService:Create(tickboxOverlay, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = Color3.new()}):Play()
+				tweenService:Create(tickbox, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = Color3.new()}):Play()
+				tweenService:Create(tickboxOverlay, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BorderColor3 = Color3.new()}):Play()
 			end
 			library.tooltip.Position = UDim2.new(2)
 		end
@@ -504,7 +504,7 @@ local function createButton(option, parent)
 		Parent = option.main
 	})
 
-	--[[library:Create("ImageLabel", {
+	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -523,7 +523,7 @@ local function createButton(option, parent)
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
 		Parent = option.title
-	})]]
+	})
 
 	library:Create("UIGradient", {
 		Color = ColorSequence.new({
@@ -720,7 +720,7 @@ local function createSlider(option, parent)
 		Parent = option.slider
 	})
 
-	--[[library:Create("ImageLabel", {
+	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -739,7 +739,7 @@ local function createSlider(option, parent)
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
 		Parent = option.slider
-	})]]
+	})
 
 	option.title = library:Create("TextBox", {
 		Position = UDim2.new((option.sub or option.textpos) and 0.5 or 0, (option.sub or option.textpos) and 0 or 6, 0, 0),
@@ -826,7 +826,7 @@ local function createSlider(option, parent)
 			library.tooltip.Position = UDim2.new(2)
 			if option ~= library.slider then
 				option.slider.BorderColor3 = Color3.new()
-				--option.fill.BorderColor3 = Color3.new()
+				option.fill.BorderColor3 = Color3.new()
 			end
 		end
 	end)
@@ -915,7 +915,7 @@ local function createList(option, parent)
 		Parent = option.listvalue
 	})
 
-	--[[library:Create("ImageLabel", {
+	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -934,7 +934,7 @@ local function createList(option, parent)
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
 		Parent = option.listvalue
-	})]]
+	})
 
 	option.arrow = library:Create("ImageLabel", {
 		Position = UDim2.new(1, -16, 0, 7),
@@ -1237,7 +1237,7 @@ local function createBox(option, parent)
 		Parent = option.holder
 	})
 
-	[[library:Create("ImageLabel", {
+	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -1256,7 +1256,7 @@ local function createBox(option, parent)
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
 		Parent = option.holder
-	})]]
+	})
 
 	local inputvalue = library:Create("TextBox", {
 		Position = UDim2.new(0, 4, 0, 0),
@@ -1577,7 +1577,7 @@ local function createColor(option, parent)
 		Parent = option.visualize
 	})
 
-	[[library:Create("ImageLabel", {
+	library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -1596,7 +1596,7 @@ local function createColor(option, parent)
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(2, 2, 62, 62),
 		Parent = option.visualize
-	})]]
+	})
 
 	local interest = option.sub and option.visualize or option.main
 
@@ -1916,7 +1916,7 @@ function library:AddTab(title, pos)
 				option.values = typeof(option.values) == "table" and option.values or {}
 				option.callback = typeof(option.callback) == "function" and option.callback or function() end
 				option.multiselect = typeof(option.multiselect) == "boolean" and option.multiselect or false
-				--option.groupbox = (not option.multiselect) and (typeof(option.groupbox) == "boolean" and option.groupbox or false)
+				option.groupbox = (not option.multiselect) and (typeof(option.groupbox) == "boolean" and option.groupbox or false)
 				option.value = option.multiselect and (typeof(option.value) == "table" and option.value or {}) or tostring(option.value or option.values[1] or "")
 				if option.multiselect then
 					for i,v in next, option.values do
@@ -2061,7 +2061,7 @@ function library:AddTab(title, pos)
 					Parent = self.main
 				})
 
-				[[library:Create("ImageLabel", {
+				library:Create("ImageLabel", {
 					Size = UDim2.new(1, -2, 1, -2),
 					Position = UDim2.new(0, 1, 0, 1),
 					BackgroundTransparency = 1,
@@ -2070,7 +2070,7 @@ function library:AddTab(title, pos)
 					ScaleType = Enum.ScaleType.Slice,
 					SliceCenter = Rect.new(2, 2, 62, 62),
 					Parent = self.main
-				})]]
+				})
 
 				table.insert(library.theme, library:Create("Frame", {
 					Size = UDim2.new(1, 0, 0, 1),
@@ -2571,7 +2571,7 @@ function library:Init()
 		end
 	end
 
-	[[spawn(function()
+	--[[spawn(function()
 		while library do
 			wait(1)
 			local Configs = self:GetConfigs()
@@ -2656,7 +2656,7 @@ function library:Init()
 	end
 end
 
-[[library.SettingsTab = library:AddTab("Settings", 100)
+library.SettingsTab = library:AddTab("Settings", 100)
 library.SettingsColumn = library.SettingsTab:AddColumn()
 library.SettingsColumn1 = library.SettingsTab:AddColumn()
 
@@ -2666,7 +2666,7 @@ library.SettingsMain:AddButton({text = "Copy Job ID", nomouse = true, callback =
 end})
 library.SettingsMain:AddButton({text = "Unload Cheat", nomouse = true, callback = function()
 	library:Unload()
-	getgenv().uwuware = nil
+	--getgenv().uwuware = nil
 end})
 library.SettingsMain:AddBind({text = "Panic Key", callback = library.options["Unload Cheat"].callback})
 
@@ -2735,7 +2735,7 @@ library.ConfigSection:AddButton({text = "Delete", callback = function()
 			delfile(library.foldername .. "/" .. Config .. library.fileext)
 		end
 	end
-end})]]
+end})
 
 -- Settings
 do
