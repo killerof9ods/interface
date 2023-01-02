@@ -2656,86 +2656,86 @@ function library:Init()
 	end
 end
 
-library.SettingsTab = library:AddTab("Settings", 100)
-library.SettingsColumn = library.SettingsTab:AddColumn()
-library.SettingsColumn1 = library.SettingsTab:AddColumn()
+--[[ library.SettingsTab = library:AddTab("Settings", 100)
+-- library.SettingsColumn = library.SettingsTab:AddColumn()
+-- library.SettingsColumn1 = library.SettingsTab:AddColumn()
 
-library.SettingsMain = library.SettingsColumn:AddSection"Main"
-library.SettingsMain:AddButton({text = "Copy Job ID", nomouse = true, callback = function()
-	setclipboard(game.JobId)
-end})
-library.SettingsMain:AddButton({text = "Unload Cheat", nomouse = true, callback = function()
-	library:Unload()
-	--getgenv().uwuware = nil
-end})
-library.SettingsMain:AddBind({text = "Panic Key", callback = library.options["Unload Cheat"].callback})
+-- library.SettingsMain = library.SettingsColumn:AddSection"Main"
+-- library.SettingsMain:AddButton({text = "Copy Job ID", nomouse = true, callback = function()
+-- 	setclipboard(game.JobId)
+-- end})
+-- library.SettingsMain:AddButton({text = "Unload Cheat", nomouse = true, callback = function()
+-- 	library:Unload()
+-- 	--getgenv().uwuware = nil
+-- end})
+-- library.SettingsMain:AddBind({text = "Panic Key", callback = library.options["Unload Cheat"].callback})
 
-library.SettingsMenu = library.SettingsColumn:AddSection"Menu"
-library.SettingsMenu:AddBind({text = "Open / Close", flag = "UI Toggle", nomouse = true, key = "End", callback = function() library:Close() end})
-library.SettingsMenu:AddColor({text = "Accent Color", flag = "Menu Accent Color", color = Color3.fromRGB(170, 117, 255), callback = function(Color)
-	if library.currentTab then
-		library.currentTab.button.TextColor3 = Color
-	end
-	for _, obj in next, library.theme do
-		obj[(obj.ClassName == "TextLabel" and "TextColor3") or (obj.ClassName == "ImageLabel" and "ImageColor3") or "BackgroundColor3"] = Color
-	end
-end})
-local Backgrounds = {
-	["Floral"] = 5553946656,
-	["Flowers"] = 6071575925,
-	["Circles"] = 6071579801,
-	["Hearts"] = 6073763717,
-}
+-- library.SettingsMenu = library.SettingsColumn:AddSection"Menu"
+-- library.SettingsMenu:AddBind({text = "Open / Close", flag = "UI Toggle", nomouse = true, key = "End", callback = function() library:Close() end})
+-- library.SettingsMenu:AddColor({text = "Accent Color", flag = "Menu Accent Color", color = Color3.fromRGB(170, 117, 255), callback = function(Color)
+-- 	if library.currentTab then
+-- 		library.currentTab.button.TextColor3 = Color
+-- 	end
+-- 	for _, obj in next, library.theme do
+-- 		obj[(obj.ClassName == "TextLabel" and "TextColor3") or (obj.ClassName == "ImageLabel" and "ImageColor3") or "BackgroundColor3"] = Color
+-- 	end
+-- end})
+-- local Backgrounds = {
+-- 	["Floral"] = 5553946656,
+-- 	["Flowers"] = 6071575925,
+-- 	["Circles"] = 6071579801,
+-- 	["Hearts"] = 6073763717,
+-- }
 
-library.SettingsMenu:AddList({text = "Background", flag = "UI Background", values = {"Floral", "Flowers", "Circles", "Hearts", "Chubs"}, callback = function(Value)
-	if(typeof(Backgrounds[Value]) == "string") then
-		library.main.Image = Backgrounds[Value]
-	elseif Backgrounds[Value] then
-		library.main.Image = "rbxassetid://" .. Backgrounds[Value]
-	end
-end}):AddColor({flag = "Menu Background Color", color = Color3.new(29, 29, 29), callback = function(Color)
-	library.main.ImageColor3 = Color
-end, trans = 0, calltrans = function(Value)
-	library.main.ImageTransparency = 1 - Value
-end})
-library.SettingsMenu:AddSlider({text = "Tile Size", value = 90, min = 50, max = 500, callback = function(Value)
-	library.main.TileSize = UDim2.new(0, Value, 0, Value)
-end})
+-- library.SettingsMenu:AddList({text = "Background", flag = "UI Background", values = {"Floral", "Flowers", "Circles", "Hearts", "Chubs"}, callback = function(Value)
+-- 	if(typeof(Backgrounds[Value]) == "string") then
+-- 		library.main.Image = Backgrounds[Value]
+-- 	elseif Backgrounds[Value] then
+-- 		library.main.Image = "rbxassetid://" .. Backgrounds[Value]
+-- 	end
+-- end}):AddColor({flag = "Menu Background Color", color = Color3.new(29, 29, 29), callback = function(Color)
+-- 	library.main.ImageColor3 = Color
+-- end, trans = 0, calltrans = function(Value)
+-- 	library.main.ImageTransparency = 1 - Value
+-- end})
+-- library.SettingsMenu:AddSlider({text = "Tile Size", value = 90, min = 50, max = 500, callback = function(Value)
+-- 	library.main.TileSize = UDim2.new(0, Value, 0, Value)
+-- end})
 
-library.ConfigSection = library.SettingsColumn1:AddSection"Configs"
-library.ConfigSection:AddBox({text = "Config Name", skipflag = true})
-library.ConfigWarning = library:AddWarning({type = "confirm"})
-library.ConfigSection:AddList({text = "Configs", skipflag = true, value = "", flag = "Config List", values = library:GetConfigs()})
-library.ConfigSection:AddButton({text = "Create", callback = function()
-	library:GetConfigs()
-	writefile(library.foldername .. "/" .. library.flags["Config Name"] .. library.fileext, "{}")
-	library.options["Config List"]:AddValue(library.flags["Config Name"])
-end})
-library.ConfigSection:AddButton({text = "Save", callback = function()
-	local r, g, b = library.round(library.flags["Menu Accent Color"])
-	library.ConfigWarning.text = "Are you sure you want to save the current settings to config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
-	if library.ConfigWarning:Show() then
-		library:SaveConfig(library.flags["Config List"])
-	end
-end})
-library.ConfigSection:AddButton({text = "Load", callback = function()
-	local r, g, b = library.round(library.flags["Menu Accent Color"])
-	library.ConfigWarning.text = "Are you sure you want to load config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
-	if library.ConfigWarning:Show() then
-		library:LoadConfig(library.flags["Config List"])
-	end
-end})
-library.ConfigSection:AddButton({text = "Delete", callback = function()
-	local r, g, b = library.round(library.flags["Menu Accent Color"])
-	library.ConfigWarning.text = "Are you sure you want to delete config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
-	if ConfigWarning:Show() then
-		local Config = library.flags["Config List"]
-		if table.find(library:GetConfigs(), Config) and isfile(library.foldername .. "/" .. Config .. library.fileext) then
-			library.options["Config List"]:RemoveValue(Config)
-			delfile(library.foldername .. "/" .. Config .. library.fileext)
-		end
-	end
-end})
+-- library.ConfigSection = library.SettingsColumn1:AddSection"Configs"
+-- library.ConfigSection:AddBox({text = "Config Name", skipflag = true})
+-- library.ConfigWarning = library:AddWarning({type = "confirm"})
+-- library.ConfigSection:AddList({text = "Configs", skipflag = true, value = "", flag = "Config List", values = library:GetConfigs()})
+-- library.ConfigSection:AddButton({text = "Create", callback = function()
+-- 	library:GetConfigs()
+-- 	writefile(library.foldername .. "/" .. library.flags["Config Name"] .. library.fileext, "{}")
+-- 	library.options["Config List"]:AddValue(library.flags["Config Name"])
+-- end})
+-- library.ConfigSection:AddButton({text = "Save", callback = function()
+-- 	local r, g, b = library.round(library.flags["Menu Accent Color"])
+-- 	library.ConfigWarning.text = "Are you sure you want to save the current settings to config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
+-- 	if library.ConfigWarning:Show() then
+-- 		library:SaveConfig(library.flags["Config List"])
+-- 	end
+-- end})
+-- library.ConfigSection:AddButton({text = "Load", callback = function()
+-- 	local r, g, b = library.round(library.flags["Menu Accent Color"])
+-- 	library.ConfigWarning.text = "Are you sure you want to load config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
+-- 	if library.ConfigWarning:Show() then
+-- 		library:LoadConfig(library.flags["Config List"])
+-- 	end
+-- end})
+-- library.ConfigSection:AddButton({text = "Delete", callback = function()
+-- 	local r, g, b = library.round(library.flags["Menu Accent Color"])
+-- 	library.ConfigWarning.text = "Are you sure you want to delete config <font color='rgb(" .. r .. "," .. g .. "," .. b .. ")'>" .. library.flags["Config List"] .. "</font>?"
+-- 	if ConfigWarning:Show() then
+-- 		local Config = library.flags["Config List"]
+-- 		if table.find(library:GetConfigs(), Config) and isfile(library.foldername .. "/" .. Config .. library.fileext) then
+-- 			library.options["Config List"]:RemoveValue(Config)
+-- 			delfile(library.foldername .. "/" .. Config .. library.fileext)
+-- 		end
+-- 	end
+-- end})]]
 
 -- Settings
 do
