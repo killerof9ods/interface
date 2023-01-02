@@ -1237,7 +1237,7 @@ local function createBox(option, parent)
 		Parent = option.holder
 	})
 
-	--[[library:Create("ImageLabel", {
+	[[library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -1577,7 +1577,7 @@ local function createColor(option, parent)
 		Parent = option.visualize
 	})
 
-	--[[library:Create("ImageLabel", {
+	[[library:Create("ImageLabel", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Image = "rbxassetid://2592362371",
@@ -2061,7 +2061,7 @@ function library:AddTab(title, pos)
 					Parent = self.main
 				})
 
-				--[[library:Create("ImageLabel", {
+				[[library:Create("ImageLabel", {
 					Size = UDim2.new(1, -2, 1, -2),
 					Position = UDim2.new(0, 1, 0, 1),
 					BackgroundTransparency = 1,
@@ -2571,7 +2571,7 @@ function library:Init()
 		end
 	end
 
-	--[[spawn(function()
+	[[spawn(function()
 		while library do
 			wait(1)
 			local Configs = self:GetConfigs()
@@ -2656,7 +2656,7 @@ function library:Init()
 	end
 end
 
---[[library.SettingsTab = library:AddTab("Settings", 100)
+[[library.SettingsTab = library:AddTab("Settings", 100)
 library.SettingsColumn = library.SettingsTab:AddColumn()
 library.SettingsColumn1 = library.SettingsTab:AddColumn()
 
@@ -2666,7 +2666,7 @@ library.SettingsMain:AddButton({text = "Copy Job ID", nomouse = true, callback =
 end})
 library.SettingsMain:AddButton({text = "Unload Cheat", nomouse = true, callback = function()
 	library:Unload()
-	--getgenv().uwuware = nil
+	getgenv().uwuware = nil
 end})
 library.SettingsMain:AddBind({text = "Panic Key", callback = library.options["Unload Cheat"].callback})
 
